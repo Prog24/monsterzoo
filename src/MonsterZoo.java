@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class MonsterZoo {
 	final Player player = new Player();
 
