@@ -44,7 +44,7 @@ public class MonsterZoo {
 			System.out.println(this.monsters.get(m).name+"が現れた！");
 			for(int i=0;i<3&&this.player.balls.count()>0;i++){//捕まえる or 3回ボールを投げるまで繰り返す
 				int r = (int)(6*Math.random());//0~5までの数字をランダムに返す
-				if(this.player.fruits.getCount()>0){
+				if(this.player.fruits.count()>0){
 					System.out.println("フルーツを投げた！捕まえやすさが倍になる！");
 					this.player.fruits.decrement();
 					r = r * 2;
