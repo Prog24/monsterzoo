@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 public class ZooStation {
   public ZooStation(Player player) {
     System.out.println("ズーstationを見つけた！");
@@ -7,8 +9,11 @@ public class ZooStation {
     System.out.println("ボールを"+ballStatus+"個，"+"フルーツを"+fruitsStatus+"個"+"卵を"+eggStatus+"個Getした！");
     player.balls.add(ballStatus);
     player.fruits.add(fruitsStatus);
-    if (eggStatus >= 1 && player.egg.count() < 10) {
-      player.egg.add();
-    }
+    IntStream.range(0, eggStatus)
+      .forEach(v -> {
+        if (player.egg.count() < 10) {
+          player.egg.add();
+        }
+      });
   }
 }

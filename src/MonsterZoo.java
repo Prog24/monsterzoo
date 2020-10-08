@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 public class MonsterZoo {
 	public Player player = new Player();
 
@@ -35,12 +37,14 @@ public class MonsterZoo {
 			}
 		}
 
-		for (int i=0; i<player.egg.hatching(); i++) {
-			System.out.println("卵が孵った！");
-			int m = (int)(this.monsters.size()*Math.random());
-			System.out.println(this.monsters.get(m).name + "が産まれた！");
-			player.monster.add(this.monsters.get(m).name);
-		}
+		Integer tmp = player.egg.hatching();
+		IntStream.range(0, tmp)
+			.forEach(v -> {
+				System.out.println("卵が孵った！");
+				int m = (int)(this.monsters.size()*Math.random());
+				System.out.println(this.monsters.get(m).name + "が産まれた！");
+				player.monster.add(this.monsters.get(m).name);
+			});
 	}
 
 }
