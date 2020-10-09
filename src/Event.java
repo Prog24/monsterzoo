@@ -34,7 +34,7 @@ public class Event {
   private void encountMonster(Player player) {
     MonsterZukan monsters = new MonsterZukan();
     int m = (int)(monsters.size()*Math.random());//monsterListからランダムにモンスターを出す
-    System.out.println(monsters.get(m).name+"が現れた！");
+    System.out.println(monsters.get(m).getName()+"が現れた！");
     for (int i=0; i<3 && player.balls.count()>0; i++) {
       int r = (int)(6*Math.random());//0~5までの数字をランダムに返す
       if (player.fruits.count() > 0) {
@@ -42,14 +42,14 @@ public class Event {
         player.fruits.decrement();
         r = r * 2;
       }
-      System.out.println(monsters.get(m).name+"にボールを投げた");
+      System.out.println(monsters.get(m).getName()+"にボールを投げた");
       player.balls.decrement();
-      if(monsters.get(m).rate<=r){//monsterRare[m]の値がr以下の場合
-        System.out.println(monsters.get(m).name+"を捕まえた！");
-        player.monster.add(monsters.get(m).name);
+      if(monsters.get(m).getRate()<=r){//monsterRare[m]の値がr以下の場合
+        System.out.println(monsters.get(m).getName()+"を捕まえた！");
+        player.monster.add(monsters.get(m).getName());
         break;//ボール投げ終了
       }else{
-        System.out.println(monsters.get(m).name+"に逃げられた！");
+        System.out.println(monsters.get(m).getName()+"に逃げられた！");
       }
     }
   }
@@ -61,8 +61,8 @@ public class Event {
       .forEach(v -> {
         System.out.println("卵が孵った！");
         int m = (int)(monsters.size()*Math.random());
-				System.out.println(monsters.get(m).name + "が産まれた！");
-				player.monster.add(monsters.get(m).name);
+				System.out.println(monsters.get(m).getName() + "が産まれた！");
+				player.monster.add(monsters.get(m).getName());
       });
   }
 }
