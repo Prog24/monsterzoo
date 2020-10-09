@@ -38,7 +38,7 @@ public class Event {
   private void encountMonster(Player player) {
     MonsterZukan monsters = new MonsterZukan();
     Monster encountMonster = monsters.encountRandomMonster();
-    System.out.println(encountMonster.getName()+"が現れた！");
+    System.out.println(encountMonster.name+"が現れた！");
     for (int i=0; i<3 && player.balls.count()>0; i++) {
       int r = (int)(6*Math.random());//0~5までの数字をランダムに返す
       if (player.fruits.count() > 0) {
@@ -46,14 +46,14 @@ public class Event {
         player.fruits.decrement();
         r = r * 2;
       }
-      System.out.println(encountMonster.getName()+"にボールを投げた");
+      System.out.println(encountMonster.name+"にボールを投げた");
       player.balls.decrement();
-      if(encountMonster.getRate()<=r){//monsterRare[m]の値がr以下の場合
-        System.out.println(encountMonster.getName()+"を捕まえた！");
-        player.monster.add(encountMonster.getName());
+      if(encountMonster.rate<=r){//monsterRare[m]の値がr以下の場合
+        System.out.println(encountMonster.name+"を捕まえた！");
+        player.monster.add(encountMonster.name);
         break;//ボール投げ終了
       }else{
-        System.out.println(encountMonster.getName()+"に逃げられた！");
+        System.out.println(encountMonster.name+"に逃げられた！");
       }
     }
   }
@@ -70,8 +70,8 @@ public class Event {
     MonsterZukan monsters = new MonsterZukan();
     Monster hatchingMonster = monsters.encountRandomMonster();
     System.out.println("卵が孵った！");
-    System.out.println(hatchingMonster.getName() + "が産まれた！");
-    player.monster.add(hatchingMonster.getName());
+    System.out.println(hatchingMonster.name + "が産まれた！");
+    player.monster.add(hatchingMonster.name);
   }
 
   private void printNowStatus(Player player) {
