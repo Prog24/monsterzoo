@@ -11,7 +11,9 @@ public class Egg {
 
   public void walk() {
     AtomicInteger i = new AtomicInteger();
-    this.egg.forEach(v -> this.egg.set(i.getAndIncrement(), v+=1.0));
+    this.egg.forEach(v -> 
+      this.egg.set(i.getAndIncrement(), v+=1.0)
+    );
   }
 
   public void add() {
@@ -19,7 +21,10 @@ public class Egg {
   }
 
   public Integer hatching () {
-    Integer hatchingEgg = this.egg.stream().filter(v -> v.equals(3.0)).collect(Collectors.toList()).size();
+    Integer hatchingEgg = this.egg.stream()
+      .filter(v -> 
+        v.equals(3.0)
+      ).collect(Collectors.toList()).size();
     this.egg.removeIf(v -> v.equals(3.0));
     return hatchingEgg;
   }
