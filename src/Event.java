@@ -1,4 +1,5 @@
 import java.util.stream.IntStream;
+import java.util.ArrayList;
 
 public class Event {
   public void move(Player player) {
@@ -13,16 +14,21 @@ public class Event {
     this.printNowStatus(player);
   }
 
-  private void zooStation(Player player) {
+  private ArrayList<Integer> getZooStationItem() {
     System.out.println("ズーstationを見つけた！");
-    Integer ballStatus   = (int)(Math.random() * 3);
-    Integer fruitsStatus = (int)(Math.random() * 3);
-    Integer eggStatus    = (int)(Math.random() * 3);
-    System.out.println("ボールを"+ballStatus+"個，"+"フルーツを"+fruitsStatus+"個"+"卵を"+eggStatus+"個Getした！");
-    player.balls.add(ballStatus);
-    player.fruits.add(fruitsStatus);
-    IntStream.range(0, eggStatus)
-      .forEach(v -> {
+    ArrayList<Integer> randomStatus = new ArrayList<Integer>();
+    IntStream.range(0,3).forEach(v -> {
+      randomStatus.add((int)(Math.random() * 3));
+    });
+    System.out.println("ボールを"+randomStatus.get(0)+"個，"+"フルーツを"+randomStatus.get(1)+"個"+"卵を"+randomStatus.get(2)+"個Getした！");
+    return randomStatus;
+  }
+
+  private void zooStation(Player player) {
+    ArrayList<Integer> randomStatus = this.getZooStationItem();
+    player.balls.add(randomStatus.get(0));
+    player.fruits.add(randomStatus.get(1));
+    IntStream.range(0, randomStatus.get(2)).forEach(v -> {
         if (player.egg.count() < 10) {
           player.egg.add();
         }
