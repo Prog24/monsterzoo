@@ -11,12 +11,9 @@ public class MonsterZukan {
     return this.zukan.size();
   }
 
-  public String getName(Integer i) {
-    return this.zukan.get(i).getName();
-  }
-
-  public Integer getRate(Integer i) {
-    return this.zukan.get(i).getRate();
+  public Monster encountRandomMonster() {
+    int m = (int)(this.zukan.size()*Math.random());//monsterListからランダムにモンスターを出す
+    return this.zukan.get(m);
   }
 
   private void setMonsterZukan() {
