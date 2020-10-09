@@ -2,8 +2,7 @@ import java.util.stream.IntStream;
 
 public class Event {
   public void move(Player player) {
-    player.distance.increment();
-    player.egg.walk();
+    player.walk();
     int flg1 = (int)(Math.random()*10);//0,1の場合はズーstation，7~9の場合はモンスター
     if (flg1 <= 1) {
       this.zooStation(player);
@@ -11,8 +10,7 @@ public class Event {
       this.encountMonster(player);
     }
     this.hatchingEgg(player);
-    System.out.println("手持ちのボールは"+player.balls.count()+"個，フルーツは"+player.fruits.count()+"個");
-    System.out.println(player.distance.get()+"km歩いた．");
+    this.printNowStatus(player);
   }
 
   private void zooStation(Player player) {
@@ -55,14 +53,23 @@ public class Event {
   }
 
   private void hatchingEgg(Player player) {
-    MonsterZukan monsters = new MonsterZukan();
     Integer tmp = player.egg.hatching();
     IntStream.range(0, tmp)
       .forEach(v -> {
-        System.out.println("卵が孵った！");
-        int m = (int)(monsters.size()*Math.random());
-				System.out.println(monsters.get(m).getName() + "が産まれた！");
-				player.monster.add(monsters.get(m).getName());
+        hatchingEggGetMonster(player);
       });
+  }
+
+  private void hatchingEggGetMonster(Player player) {
+    MonsterZukan monsters = new MonsterZukan();
+    System.out.println("卵が孵った！");
+    int m = (int)(monsters.size()*Math.random());
+    System.out.println(monsters.get(m).getName() + "が産まれた！");
+    player.monster.add(monsters.get(m).getName());
+  }
+
+  private void printNowStatus(Player player) {
+    System.out.println("手持ちのボールは"+player.balls.count()+"個，フルーツは"+player.fruits.count()+"個");
+    System.out.println(player.distance.get()+"km歩いた．");
   }
 }
