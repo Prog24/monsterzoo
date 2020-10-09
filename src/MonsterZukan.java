@@ -11,13 +11,13 @@ public class MonsterZukan {
     return this.zukan.size();
   }
 
-	public String getName(Integer i) {
-		return this.zukan.get(i).getName();
-	}
+  public String getName(Integer i) {
+    return this.zukan.get(i).getName();
+  }
 
-	public Integer getRate(Integer i) {
-		return this.zukan.get(i).getRate();
-	}
+  public Integer getRate(Integer i) {
+    return this.zukan.get(i).getRate();
+  }
 
   private void setMonsterZukan() {
     this.zukan.add(new Monster("イガキン", 9));
