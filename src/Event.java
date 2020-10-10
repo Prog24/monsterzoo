@@ -11,7 +11,7 @@ public class Event {
       this.encountMonster(player);
     }
     this.hatchingEgg(player);
-    this.printNowStatus(player);
+    player.nowStatus();
   }
 
   private ArrayList<Integer> getZooStationItem() {
@@ -40,21 +40,9 @@ public class Event {
     Monster encountMonster = monsters.encountRandomMonster();
     System.out.println(encountMonster.name+"が現れた！");
     for (int i=0; i<3 && player.balls.count()>0; i++) {
-      int r = (int)(6*Math.random());//0~5までの数字をランダムに返す
-      if (player.fruits.count() > 0) {
-        System.out.println("フルーツを投げた！捕まえやすさが倍になる！");
-        player.fruits.decrement();
-        r = r * 2;
-      }
-      System.out.println(encountMonster.name+"にボールを投げた");
-      player.balls.decrement();
-      if(encountMonster.rate<=r){//monsterRare[m]の値がr以下の場合
-        System.out.println(encountMonster.name+"を捕まえた！");
-        player.monster.add(encountMonster.name);
-        break;//ボール投げ終了
-      }else{
-        System.out.println(encountMonster.name+"に逃げられた！");
-      }
+      Integer r = (int)(6*Math.random());//0~5までの数字をランダムに返す
+      r = player.fruits.throwFruits(r, player);
+      player.balls.throwBall(r, player, encountMonster);
     }
   }
 
@@ -74,8 +62,4 @@ public class Event {
     player.monster.add(hatchingMonster.name);
   }
 
-  private void printNowStatus(Player player) {
-    System.out.println("手持ちのボールは"+player.balls.count()+"個，フルーツは"+player.fruits.count()+"個");
-    System.out.println(player.distance.get()+"km歩いた．");
-  }
 }

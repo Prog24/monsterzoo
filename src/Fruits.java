@@ -16,4 +16,13 @@ public class Fruits {
   public void decrement() {
     this.count -= 1;
   }
+
+  public Integer throwFruits(Integer r, Player player) {
+    if (player.fruits.count() > 0) {
+      System.out.println("フルーツを投げた！捕まえやすさが倍になる！");
+      player.fruits.decrement();
+      r = r * 2;
+    }
+    return r;
+  }
 }
