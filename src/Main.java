@@ -9,11 +9,10 @@ public class Main {
 		while(true){
 			try {
 				Thread.sleep(1000);
-				if(player.balls.count()>0){
-					event.move(player);
-				}else{
+				if(player.balls.count()<=0){
 					break;
 				}
+				event.move(player);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
